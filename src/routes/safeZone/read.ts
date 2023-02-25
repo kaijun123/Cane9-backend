@@ -1,10 +1,9 @@
-import { Request, Response, NextFunction } from "express"
-import { SafeZoneDetails } from "src/util/types"
+import { NextFunction, Request, Response } from "express"
 import { prisma } from ".."
 
 
 export const readSafeZone = async (req: Request, res: Response, next: NextFunction) => {
-  const { patientId }: SafeZoneDetails = req.body
+  const patientId: any = req.query.patientId!
 
   try {
     if (!patientId) {

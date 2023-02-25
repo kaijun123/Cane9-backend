@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from "express"
-import { CareTakerDetails } from "src/util/types"
 import { prisma } from ".."
 
 export const readCareTaker = async (req: Request, res: Response, next: NextFunction) => {
-  const { patientId }: CareTakerDetails = req.body
+  const patientId: any = req.query.patientId!
 
   try {
     const patient = await prisma.patient.findUnique({

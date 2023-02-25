@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from "express"
-import { PatientLocationDetails } from "src/util/types"
 import { prisma } from ".."
 
 export const readLocation = async (req: Request, res: Response, next: NextFunction) => {
-  const { patientId }: PatientLocationDetails = req.body
+  const patientId: any = req.query.patientId!
 
   try {
     const location = await prisma.location.findUnique({
