@@ -5,6 +5,8 @@ import { healthCheck } from "./healthCheck";
 import patient from "./patient/index";
 import safeZone from "./safeZone/index";
 import location from "./location/index"
+import alert from "./alert/index"
+
 
 export const prisma = new PrismaClient()
 
@@ -15,6 +17,7 @@ router.use('/safezone', safeZone)
 router.use('/patient', patient)
 router.use('/caretaker', caretaker)
 router.use('/location', location)
+router.use('/alert', alert)
 
 
 

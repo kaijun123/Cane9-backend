@@ -32,7 +32,19 @@ export const updateLocation = async (req: Request, res: Response, next: NextFunc
     })
 
     console.log(location)
-    res.status(200).send(location)
+
+    // Send back the status of alarm to arduino on next location update
+    const location2 = await prisma.location.findUnique({
+      where: { patientId }
+    })
+    if (location2!.alarm) {
+      res.status(400).send("1") // Enable alarm
+    }
+    else {
+      res.status(400).send("0") // Disable alarm
+    }
+
+    // res.status(200).send(location)
   }
   catch (error: any) {
     res.status(400).send(error.message)
