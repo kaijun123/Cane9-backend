@@ -1,6 +1,9 @@
 export type SafeZoneDetails = {
-  patientId: string
+  patientId?: string
   safeZoneId?: string
+  location?: string
+  address?: string
+  postalCode?: string
   lat?: string
   long?: string
   radius?: number

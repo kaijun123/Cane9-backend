@@ -24,6 +24,9 @@ model SafeZone {
   id            String     @id @default(uuid())
   patientId     String
   patient       Patient    @relation(fields: [patientId], references: [id])
+  location      String
+  address       String
+  postalCode    String?
   lat           String
   long          String
   radius        Int

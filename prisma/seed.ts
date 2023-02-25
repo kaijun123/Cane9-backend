@@ -27,10 +27,37 @@ const prisma = new PrismaClient()
       safeZone: {
         create: [
           {
-            lat: "1.3542656090789686", long: "103.6880687680899", radius: 1000, image: "safeZone/safeZone_1.png"
+            location: "Home",
+            address: "623 Jurong West Street 61, Block 623, #06-619",
+            lat: "1.3542656090789686",
+            long: "103.6880687680899",
+            radius: 1000,
+            image: "Safezone/Safezone_1.png",
+            frequencies: ["Visits every Tues and Thurs"],
+            details: [""]
           }, // Tanjong Hall
-          { lat: "1.3473120629448945", long: "103.68086265096642", radius: 1000, image: null }, // North Spine
-          { lat: "1.350052767900789", long: "103.68387232450321", radius: 1000, image: null }  // NTU ADM
+          {
+            location: "Pioneer Shopping Mall",
+            address: "638 Jurong West Street 61",
+            postalCode: "640638",
+            lat: "1.3473120629448945",
+            long: "103.68086265096642",
+            radius: 1000,
+            image: "Safezone/Safezone_1.png",
+            frequencies: ["Visits every Wed"],
+            details: [""]
+          }, // North Spine
+          {
+            location: "Pier Medical Centre",
+            address: "725 Jurong West Ave 5",
+            postalCode: "640725",
+            lat: "1.350052767900789",
+            long: "103.68387232450321",
+            radius: 1000,
+            image: "Safezone/Safezone_1.png",
+            frequencies: ["Visits every Fri"],
+            details: [""]
+          }  // NTU ADM
         ]
       },
       caretaker: {

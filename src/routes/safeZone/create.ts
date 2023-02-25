@@ -3,12 +3,11 @@ import { SafeZoneDetails } from "src/util/types"
 import { prisma } from ".."
 
 export const createSafeZone = async (req: Request, res: Response, next: NextFunction) => {
-  const { patientId, lat, long, radius, frequencies, details }: SafeZoneDetails = req.body
-
+  const { patientId, location, address, postalCode, lat, long, radius, frequencies, details }: SafeZoneDetails = req.body
 
   try {
-    if (!lat || !long || !radius) {
-      throw new Error("Lat/ long/ radius is not provided")
+    if (!patientId || !location || !address || !postalCode || !lat || !long || !radius) {
+      throw new Error("patientId/ lat/ long/ radius / location/ address is not provided")
     }
 
     const safeZone = await prisma.patient.update({
@@ -16,7 +15,7 @@ export const createSafeZone = async (req: Request, res: Response, next: NextFunc
       data: {
         safeZone: {
           create: {
-            lat, long, radius, frequencies, details
+            location, address, postalCode, lat, long, radius, frequencies, details
           }
         }
       }
