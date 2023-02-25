@@ -10,9 +10,9 @@ export const updateLocation = async (req: Request, res: Response, next: NextFunc
     if (!lat || !long) {
       throw new Error("No lat or long provided")
     }
-    if (!registrationToken) {
-      throw new Error("No registrationToken provided")
-    }
+    // if (!registrationToken) {
+    //   throw new Error("No registrationToken provided")
+    // }
 
     const safeZones = await prisma.safeZone.findMany({
       where: { patientId }
@@ -35,27 +35,27 @@ export const updateLocation = async (req: Request, res: Response, next: NextFunc
 
     console.log(location)
 
-    // Incorporate firebase cloud functions to create push notifs to the FE. Maybe create a constant monitoring system if apis are not suitable
-    if (outOfSafeZone) {
-      const message = {
-        data: {
-          outOfSafeZone: `${outOfSafeZone}`
-        },
-        token: registrationToken
-      }
-      const response = await messaging.send(message)
-      console.log("Successfully sent message:", response)
-    }
+    // // Incorporate firebase cloud functions to create push notifs to the FE. Maybe create a constant monitoring system if apis are not suitable
+    // if (outOfSafeZone) {
+    //   const message = {
+    //     data: {
+    //       outOfSafeZone: `${outOfSafeZone}`
+    //     },
+    //     token: registrationToken
+    //   }
+    //   const response = await messaging.send(message)
+    //   console.log("Successfully sent message:", response)
+    // }
 
     // Send back the status of alarm to arduino on next location update
     const location2 = await prisma.location.findUnique({
       where: { patientId }
     })
     if (location2!.alarm) {
-      res.status(400).send("1") // Enable alarm
+      res.status(200).send("1") // Enable alarm
     }
     else {
-      res.status(400).send("0") // Disable alarm
+      res.status(200).send("0") // Disable alarm
     }
 
     // res.status(200).send(location)
