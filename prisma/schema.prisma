@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Location {
+  patientId       String    @id @default(uuid())
+  patient         Patient   @relation(fields: [patientId], references: [id])
+  updatedAt       DateTime  @updatedAt
+  lat             String
+  long            String
+  outOfSafeZone   Boolean   @default(false)
+  alarm           Boolean   @default(false)
+}
+
+model SafeZone {
+  id         String     @id @default(uuid())
+  patientId  String
+  patient    Patient    @relation(fields: [patientId], references: [id])
+  lat        String
+  long       String
+  radius     Int
+}
+
+model Patient {
+  id              String      @id
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  name            String
+  age             Int
+  address         String
+  image           String
+  languages       String[]
+  hobbies         String[]
+  postalCode      String
+  location        Location?
+  safeZone        SafeZone[]
+  caretakerId     String?
+  caretaker       Caretaker?  @relation(fields: [caretakerId], references: [id])
+}
+
+model Caretaker {
+  id            String      @id @default(uuid())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  name          String
+  relationship  String
+  contact       String
+  image         String
+  patient       Patient[]
+}
