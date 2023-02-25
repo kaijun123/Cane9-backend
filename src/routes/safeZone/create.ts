@@ -6,8 +6,8 @@ export const createSafeZone = async (req: Request, res: Response, next: NextFunc
   const { patientId, location, address, postalCode, lat, long, radius, frequencies, details }: SafeZoneDetails = req.body
 
   try {
-    if (!patientId || !location || !address || !postalCode || !lat || !long || !radius) {
-      throw new Error("patientId/ lat/ long/ radius / location/ address is not provided")
+    if (!patientId || !location || !address || !lat || !long || !radius) {
+      throw new Error("patientId/ location/ address/ lat/ long/ radius is not provided")
     }
 
     const safeZone = await prisma.patient.update({
