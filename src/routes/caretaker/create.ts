@@ -21,7 +21,7 @@ export const createCareTaker = async (req: Request, res: Response, next: NextFun
         }
       }
     })
-    console.log(createCareTaker)
+    // console.log(createCareTaker)
     res.status(200).send(createCareTaker)
   }
   catch (error: any) {

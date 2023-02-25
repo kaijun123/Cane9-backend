@@ -21,7 +21,7 @@ export const createSafeZone = async (req: Request, res: Response, next: NextFunc
       }
     })
 
-    console.log(safeZone)
+    // console.log(safeZone)
     res.status(200).send(safeZone)
   }
   catch (error: any) {

@@ -11,7 +11,7 @@ export const deleteSafeZone = async (req: Request, res: Response, next: NextFunc
         id: safeZoneId
       }
     })
-    console.log(safeZone)
+    // console.log(safeZone)
     res.status(200).send(safeZone)
   }
   catch (error: any) {

@@ -10,7 +10,7 @@ export const readPatient = async (req: Request, res: Response, next: NextFunctio
     const patient = await prisma.patient.findUnique({
       where: { id }
     })
-    console.log(patient)
+    // console.log(patient)
     res.status(200).send(patient)
   }
   catch (error: any) {

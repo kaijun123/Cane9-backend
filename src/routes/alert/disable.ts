@@ -13,7 +13,7 @@ export const disableAlarm = async (req: Request, res: Response, next: NextFuncti
         alarm: false
       }
     })
-    console.log(enable)
+    // console.log(enable)
     res.status(200).send(enable)
   }
   catch (error: any) {

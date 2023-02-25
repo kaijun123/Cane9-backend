@@ -9,14 +9,14 @@ export const readCareTaker = async (req: Request, res: Response, next: NextFunct
     const patient = await prisma.patient.findUnique({
       where: { id: patientId }
     })
-    console.log(patient)
+    // console.log(patient)
 
     const caretakerId = patient?.caretakerId || null
     if (caretakerId) {
       const caretaker = await prisma.caretaker.findUnique({
         where: { id: caretakerId }
       })
-      console.log(caretaker)
+      // console.log(caretaker)
       res.status(200).send(caretaker)
     }
     else {

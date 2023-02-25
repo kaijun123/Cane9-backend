@@ -16,7 +16,7 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
       },
       data: { lat, long, radius, image, frequency, details }
     })
-    console.log(safeZone)
+    // console.log(safeZone)
     res.status(200).send(safeZone)
   }
   catch (error: any) {

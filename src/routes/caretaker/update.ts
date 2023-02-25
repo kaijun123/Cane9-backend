@@ -26,7 +26,7 @@ export const updateCareTaker = async (req: Request, res: Response, next: NextFun
     const updatedCareTaker = await prisma.caretaker.findUnique({
       where: { id: caretakerId }
     })
-    console.log(updatedCareTaker)
+    // console.log(updatedCareTaker)
     res.status(200).send(updatedCareTaker)
   }
   catch (error: any) {
