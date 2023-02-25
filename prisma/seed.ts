@@ -26,9 +26,9 @@ const prisma = new PrismaClient()
       },
       safeZone: {
         create: [
-          { lat: "1.3542656090789686", long: "103.6880687680899", radius: 1000 }, // Tanjong Hall
-          { lat: "1.3473120629448945", long: "103.68086265096642", radius: 1000 }, // North Spine
-          { lat: "1.350052767900789", long: "103.68387232450321", radius: 1000 }  // NTU ADM
+          { lat: "1.3542656090789686", long: "103.6880687680899", radius: 1000, image: null, frequency: null, details: null }, // Tanjong Hall
+          { lat: "1.3473120629448945", long: "103.68086265096642", radius: 1000, image: null, frequency: null, details: null }, // North Spine
+          { lat: "1.350052767900789", long: "103.68387232450321", radius: 1000, image: null, frequency: null, details: null }  // NTU ADM
         ]
       },
       caretaker: {

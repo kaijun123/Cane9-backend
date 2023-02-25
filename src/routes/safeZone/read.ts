@@ -7,12 +7,11 @@ export const readSafeZone = async (req: Request, res: Response, next: NextFuncti
   const { patientId }: SafeZoneDetails = req.body
 
   try {
+    if (!patientId) {
+      throw new Error("patientId not provided")
+    }
     const safeZone = await prisma.safeZone.findMany({
-      where: {
-        patientId: {
-          equals: patientId
-        }
-      }
+      where: { patientId }
     })
     console.log(safeZone)
     res.status(200).send(safeZone)

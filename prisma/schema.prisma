@@ -27,6 +27,9 @@ model SafeZone {
   lat        String
   long       String
   radius     Int
+  image      String?
+  frequency  String?
+  details    String?
 }
 
 model Patient {
