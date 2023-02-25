@@ -11,6 +11,7 @@ export type SafeZoneDetails = {
 
 export type PatientLocationDetails = {
   patientId: string
+  registrationToken?: string
   lat?: string
   long?: string
 }

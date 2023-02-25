@@ -1,13 +1,17 @@
 import { NextFunction, Request, Response } from "express"
+import { messaging } from "../../server"
 import { PatientLocationDetails } from "src/util/types"
 import { prisma } from ".."
 
 export const updateLocation = async (req: Request, res: Response, next: NextFunction) => {
-  const { patientId, lat, long }: PatientLocationDetails = req.body
+  const { patientId, registrationToken, lat, long }: PatientLocationDetails = req.body
 
   try {
     if (!lat || !long) {
       throw new Error("No lat or long provided")
+    }
+    if (!registrationToken) {
+      throw new Error("No registrationToken provided")
     }
 
     const safeZones = await prisma.safeZone.findMany({
@@ -24,14 +28,24 @@ export const updateLocation = async (req: Request, res: Response, next: NextFunc
     }
     console.log("outOfSafeZone", outOfSafeZone)
 
-    // TODO: Incorporate firebase cloud functions to create push notifs to the FE. Maybe create a constant monitoring system if apis are not suitable
-
     const location = await prisma.location.update({
       where: { patientId },
       data: { lat, long, outOfSafeZone }
     })
 
     console.log(location)
+
+    // Incorporate firebase cloud functions to create push notifs to the FE. Maybe create a constant monitoring system if apis are not suitable
+    if (outOfSafeZone) {
+      const message = {
+        data: {
+          outOfSafeZone: `${outOfSafeZone}`
+        },
+        token: registrationToken
+      }
+      const response = await messaging.send(message)
+      console.log("Successfully sent message:", response)
+    }
 
     // Send back the status of alarm to arduino on next location update
     const location2 = await prisma.location.findUnique({
