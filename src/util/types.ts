@@ -5,8 +5,8 @@ export type SafeZoneDetails = {
   long?: string
   radius?: number
   image?: string
-  frequency?: string
-  details?: string
+  frequencies?: string[]
+  details?: string[]
 }
 
 export type PatientLocationDetails = {
