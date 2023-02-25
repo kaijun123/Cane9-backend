@@ -2,6 +2,8 @@
 Built using express, NodeJS (v16.15.0), Supabase, Prisma, Docker
 
 ### QuickStart
+Create .env file and include a variable called ```DATABASE_URL```, specifying the supabase url
+Create a folder in the root directory called ```firebase-config``` , and paste the firebase admin service account json into a file in firebase-config called ```service-account.json```
 Run the following commands to start the server
 
 #### Runnning using Nodemon
